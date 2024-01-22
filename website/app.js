@@ -13,7 +13,7 @@ const getData = async () => {
     try {
         const data = await response.json();
 
-        console.log(data);
+        // console.log(data);
         return data;
     } catch (error) {
         console.error('Error fetching data:', error);
@@ -33,6 +33,7 @@ const postData = async (url , data = {}) => {
 
     try {
         const newData = await response.json();
+        // Not working ? 
         console.log(newData);
         return newData;
     } catch (error) {
@@ -42,7 +43,7 @@ const postData = async (url , data = {}) => {
 
 
 const updateUI = async () => {
-    const response = await fetch('/getData');
+    const response = await fetch('/all');
     try {
         const data = await response.json();
         // Update UI elements with dynamic values
@@ -74,7 +75,8 @@ document.getElementById('generate').addEventListener('click', async () => {
 
         console.log(newData);
         await postData('/all', newData);
-        await updateUI()
+        await updateUI(); 
+        await getData();
     } catch (error) {
         console.error('Error processing weather data:', error);
     }
