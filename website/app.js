@@ -9,7 +9,7 @@ let newDate = d.getMonth()+'.'+ d.getDate()+'.'+ d.getFullYear();
 
 
 const getData = async () => {
-    const response = await fetch('/all');
+    const response = await fetch('/');
     try {
         const data = await response.json();
 
@@ -34,7 +34,7 @@ const postData = async (url , data = {}) => {
     try {
         const newData = await response.json();
         // Not working ? 
-        console.log(newData);
+        //console.log(newData);
         return newData;
     } catch (error) {
         console.error('Error posting data:', error);
@@ -46,10 +46,11 @@ const updateUI = async () => {
     const response = await fetch('/all');
     try {
         const data = await response.json();
+        console.log('Updated data:');
         // Update UI elements with dynamic values
-        document.getElementById('temperature').innerHTML = `Temperature: ${data.temperature}`;
+        document.getElementById('temp').innerHTML = `Temperature: ${data.temperature}`;
         document.getElementById('date').innerHTML = `Date: ${data.date}`;
-        document.getElementById('user-response').innerHTML = `User Input: ${data.userResponse}`;
+        document.getElementById('content').innerHTML = `User Input: ${data.userResponse}`;
     } catch (error) {
         console.error('Error updating UI:', error);
     }
@@ -74,9 +75,8 @@ document.getElementById('generate').addEventListener('click', async () => {
         };
 
         console.log(newData);
-        await postData('/all', newData);
+        postData('/all', newData);
         await updateUI(); 
-        await getData();
     } catch (error) {
         console.error('Error processing weather data:', error);
     }

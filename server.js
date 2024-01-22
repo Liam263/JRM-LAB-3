@@ -38,5 +38,6 @@ app.post('/all',
         projectData.temperature = newData.temperature;
         projectData.date = newData.date;
         projectData.userResponse = newData.userResponse;
-
+        //passed
+        //console.log(projectData)
     })
